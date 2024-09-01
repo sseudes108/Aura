@@ -30,7 +30,6 @@ void UStateMachine::ChangeState(const TStrongObjectPtr<UObject>& NewState){
 	}
 
 	CurrentState = NewState;
-
 	CurrentStatePtr = Cast<UStateBase>(CurrentState.Get());
 
 	if(CurrentStatePtr){
