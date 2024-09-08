@@ -19,7 +19,6 @@ protected:
 
 public:	
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
-
 	void ChangeState(const TStrongObjectPtr<UObject>& NewState);
 
 private:

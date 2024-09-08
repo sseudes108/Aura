@@ -2,6 +2,7 @@
 
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Interfaces/InteractableActor.h"
 
 AAuraPlayerController::AAuraPlayerController(){
     bReplicates = true;
@@ -9,8 +10,40 @@ AAuraPlayerController::AAuraPlayerController(){
 
 void AAuraPlayerController::BeginPlay(){
     Super::BeginPlay();
-
     SetInputMappingContext();
+}
+
+void AAuraPlayerController::PlayerTick(float DeltaTime){
+    Super::PlayerTick(DeltaTime);
+    CursorTrace();
+}
+
+void AAuraPlayerController::CursorTrace(){
+    FHitResult CursorHit;
+    GetHitResultUnderCursor(ECC_Visibility, false, CursorHit);
+    if(!CursorHit.bBlockingHit){ return; }
+    
+    LastActor = CurrentActor;
+    CurrentActor = Cast<IInteractableActor>(CursorHit.GetActor());
+
+    if(LastActor == nullptr){
+        if(CurrentActor == nullptr){
+            return;
+        }
+
+        CurrentActor->HighLightActor();
+    }else{
+        if(CurrentActor == nullptr){
+            LastActor->UnHighLightActor();
+            return;
+        }
+
+        if(LastActor != nullptr){
+            LastActor->UnHighLightActor();
+            CurrentActor->HighLightActor();
+            return;
+        }
+    }
 }
 
 void AAuraPlayerController::SetInputMappingContext(){
@@ -36,9 +69,7 @@ void AAuraPlayerController::SetupInputComponent(){
     EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move);
 }
 
-void AAuraPlayerController::Move(const FInputActionValue& InputActionValue){
-    if(!bCanMove){return;}
-    
+void AAuraPlayerController::Move(const FInputActionValue& InputActionValue){    
     const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
 
     const FRotator YawRotation(0.f, GetControlRotation().Yaw, 0.f);
@@ -50,8 +81,4 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue){
         ControlledPawn->AddMovementInput(ForwardDirection, InputAxisVector.Y);
         ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
     }
-}
-
-void AAuraPlayerController::CanMove(bool CanMove){
-    bCanMove = CanMove;
 }

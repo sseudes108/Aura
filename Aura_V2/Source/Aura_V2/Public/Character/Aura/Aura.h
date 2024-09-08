@@ -13,8 +13,12 @@ protected:
 	virtual void CreateStates() override;
 
 public:
+	AAura();
 	TStrongObjectPtr<UObject> IdleState;
 
 	virtual void UpdateStateHistory(FString NewState) override;
 	virtual void IniStateMachine(const TStrongObjectPtr<UObject>& InitialState) override;
+
+private:
+	void SetUpCharacterMovement();
 };
