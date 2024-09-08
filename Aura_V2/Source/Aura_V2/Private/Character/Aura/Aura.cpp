@@ -1,6 +1,7 @@
 #include "Character/Aura/Aura.h"
 
 #include "Character/Aura/States/AuraStateIdle.h"
+#include "StateMachine/StateBase.h"
 
 void AAura::BeginPlay(){
 	Super::BeginPlay();
@@ -12,7 +13,7 @@ void AAura::BeginPlay(){
 void AAura::CreateStates(){
     Super::CreateStates();
 
-    IdleState = TStrongObjectPtr<UObject>(NewObject<UAuraStateIdle>());
+    IdleState = TStrongObjectPtr<UStateBase>(NewObject<UAuraStateIdle>());
 }
 
 void AAura::IniStateMachine(const TStrongObjectPtr<UObject>& InitialState){

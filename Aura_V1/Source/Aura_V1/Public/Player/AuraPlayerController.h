@@ -7,6 +7,7 @@
 class UInputMappingContext;
 class UInputAction;
 struct FInputActionValue;
+class IEnemyInterface;
 
 UCLASS()
 class AURA_V1_API AAuraPlayerController : public APlayerController{
@@ -14,6 +15,7 @@ class AURA_V1_API AAuraPlayerController : public APlayerController{
 
 public:
 	AAuraPlayerController();
+	virtual void PlayerTick(float DeltaTime);
 
 protected:
 	virtual void BeginPlay() override;
@@ -27,4 +29,8 @@ private:
 	TObjectPtr<UInputAction> MoveAction;
 
 	void Move(const FInputActionValue& InputActionValue);
+
+	void CursorTrace();
+	IEnemyInterface* LastActor;
+	IEnemyInterface* ThisActor;
 };

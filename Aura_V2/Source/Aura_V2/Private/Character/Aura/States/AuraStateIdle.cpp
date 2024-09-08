@@ -6,6 +6,4 @@ void UAuraStateIdle::Tick(float DeltaTime){}
 
 void UAuraStateIdle::Exit(){}
 
-FString UAuraStateIdle::GetName(){
-    return "Aura Idle State";
-}
+FString UAuraStateIdle::GetName() { return "Aura Idle State"; }

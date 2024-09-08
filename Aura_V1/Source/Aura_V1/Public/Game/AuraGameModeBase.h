@@ -7,5 +7,4 @@
 UCLASS()
 class AURA_V1_API AAuraGameModeBase : public AGameModeBase{
 	GENERATED_BODY()
-	
 };
