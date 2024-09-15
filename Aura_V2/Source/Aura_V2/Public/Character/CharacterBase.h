@@ -25,8 +25,8 @@ protected:
 
 public:
 	TArray<FString> StateHistory;
-	int8 HistoryLentgh = 5;
-	virtual void UpdateStateHistory(FString NewState);
+	int8 HistoryLenght = 5;
+	virtual void UpdateStateHistory(const FString NewState);
 
 private:
 	void SetUpWeaponSkeletalMesh();

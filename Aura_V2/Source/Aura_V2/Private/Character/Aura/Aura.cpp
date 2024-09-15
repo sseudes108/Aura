@@ -17,10 +17,12 @@ void AAura::BeginPlay(){
 }
 
 void AAura::SetUpCharacterMovement(){
-    GetCharacterMovement()->bOrientRotationToMovement = true;
-    GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
-    GetCharacterMovement()->bConstrainToPlane = true;
-    GetCharacterMovement()->bSnapToPlaneAtStart = true;
+    UCharacterMovementComponent* CharMovement = GetCharacterMovement();
+    
+    CharMovement->bOrientRotationToMovement = true;
+    CharMovement->RotationRate = FRotator(0.f, 400.f, 0.f);
+    CharMovement->bConstrainToPlane = true;
+    CharMovement->bSnapToPlaneAtStart = true;
 
     bUseControllerRotationPitch = false;
     bUseControllerRotationRoll = false;
@@ -37,6 +39,6 @@ void AAura::IniStateMachine(const TStrongObjectPtr<UObject>& InitialState){
     Super::IniStateMachine(InitialState);
 }
 
-void AAura::UpdateStateHistory(FString NewState){
+void AAura::UpdateStateHistory(const FString NewState){
     Super::UpdateStateHistory(NewState);
 }

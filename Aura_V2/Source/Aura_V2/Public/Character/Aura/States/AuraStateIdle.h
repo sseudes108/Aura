@@ -11,8 +11,8 @@ class AURA_V2_API UAuraStateIdle : public UStateBase{
 	GENERATED_BODY()
 
 public:
-	virtual void Enter();
-	virtual void Tick(float DeltaTime);
-	virtual void Exit();
-	virtual FString GetName();
+	virtual void Enter() override;
+	virtual void Tick(float DeltaTime) override;
+	virtual void Exit() override;
+	virtual FString GetName() override;
 };
