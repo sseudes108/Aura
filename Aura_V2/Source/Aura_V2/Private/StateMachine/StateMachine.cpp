@@ -15,6 +15,11 @@ void UStateMachine::BeginPlay(){
 void UStateMachine::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction){
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
+	// if(CurrentStatePtr == nullptr){
+	// 	CurrentStatePtr = Cast<UStateBase>(CurrentState.Get());
+	// }
+	// CurrentStatePtr->Tick(DeltaTime);
+	
 	if(CurrentStatePtr != nullptr){
 		CurrentStatePtr->Tick(DeltaTime);
 	}

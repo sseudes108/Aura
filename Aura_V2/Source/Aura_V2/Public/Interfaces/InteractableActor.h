@@ -13,7 +13,6 @@ class AURA_V2_API IInteractableActor{
 	GENERATED_BODY()
 public:
 	USkeletalMeshComponent* BodyMesh;
-	virtual void SetUpMeshHighLight() = 0;
 	virtual void HighLightActor() = 0;
 	virtual void UnHighLightActor() = 0;
 };

@@ -5,6 +5,8 @@
 #include "CharacterBase.generated.h"
 
 class UStateMachine;
+class UAbilitySystemComponent;
+class UAttributeSet;
 
 UCLASS(Abstract)
 class AURA_V2_API ACharacterBase : public ACharacter{
@@ -22,6 +24,11 @@ protected:
 	TObjectPtr<UStateMachine> StateMachine;
 	virtual void CreateStates();
 	virtual void IniStateMachine(const TStrongObjectPtr<UObject>& InitialState);
+
+	UPROPERTY()
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
+	UPROPERTY()
+	TObjectPtr<UAttributeSet> AttributeSet;
 
 public:
 	TArray<FString> StateHistory;
