@@ -46,6 +46,7 @@ void AAuraPlayerController::CursorTrace(){
     }
 }
 
+//Input Component
 void AAuraPlayerController::SetInputMappingContext(){
     check(AuraContext);
 
@@ -61,14 +62,15 @@ void AAuraPlayerController::SetInputMappingContext(){
     InputModeData.SetHideCursorDuringCapture(false);
     SetInputMode(InputModeData);
 }
-
 void AAuraPlayerController::SetupInputComponent(){
     Super::SetupInputComponent();
 
     UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(InputComponent);
     EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AAuraPlayerController::Move );
 }
+//End Input Component
 
+//Input Functions
 void AAuraPlayerController::Move(const FInputActionValue& InputActionValue){    
     const FVector2D InputAxisVector = InputActionValue.Get<FVector2D>();
 
@@ -82,3 +84,4 @@ void AAuraPlayerController::Move(const FInputActionValue& InputActionValue){
         ControlledPawn->AddMovementInput(RightDirection, InputAxisVector.X);
     }
 }
+//End Input Functions

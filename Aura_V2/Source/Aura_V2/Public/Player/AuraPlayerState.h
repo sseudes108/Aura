@@ -4,17 +4,17 @@
 #include "GameFramework/PlayerState.h"
 #include "AbilitySystemInterface.h"
 
-#include "AuraV2PlayerState.generated.h"
+#include "AuraPlayerState.generated.h"
 
 class UAbilitySystemComponent;
 class UAttributeSet;
 
 UCLASS()
-class AURA_V2_API AAuraV2PlayerState : public APlayerState, public IAbilitySystemInterface{
+class AURA_V2_API AAuraPlayerState : public APlayerState, public IAbilitySystemInterface{
 	GENERATED_BODY()
 	
 public:
-	AAuraV2PlayerState();
+	AAuraPlayerState();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	virtual UAttributeSet* GetAttributeSet() const { return AttributeSet; }
 	

@@ -1,19 +1,23 @@
 #include "Character/EnemyCharacter.h"
 
-#include "AbilitySystem/AuraV2AbilitySystemComponent.h"
-#include "AbilitySystem/AuraV2AttributeSet.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "AbilitySystem/AuraAttributeSet.h"
 
 AEnemyCharacter::AEnemyCharacter(){
+    // Highlight PostProcess
     BodyMesh = GetMesh();
     BodyMesh->SetCollisionResponseToChannel(ECC_Visibility, ECR_Block);
     BodyMesh->SetCustomDepthStencilValue(250);
     Weapon->SetCustomDepthStencilValue(250);
+    // End Highlight PostProcess
 
-    AbilitySystemComponent = CreateDefaultSubobject<UAuraV2AbilitySystemComponent>("AbilitySystemComponent");
+    // GAS
+    AbilitySystemComponent = CreateDefaultSubobject<UAuraAbilitySystemComponent>("AbilitySystemComponent");
     AbilitySystemComponent->SetIsReplicated(true);
     AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
     
-    AttributeSet = CreateDefaultSubobject<UAuraV2AttributeSet>("AttributeSet");
+    AttributeSet = CreateDefaultSubobject<UAuraAttributeSet>("AttributeSet");
+    // End GAS
 }
 
 void AEnemyCharacter::BeginPlay(){
@@ -22,13 +26,13 @@ void AEnemyCharacter::BeginPlay(){
     AbilitySystemComponent->InitAbilityActorInfo(this,this);
 }
 
+// Highlight PostProcess
 void AEnemyCharacter::HighLightActor(){
     BodyMesh->SetRenderCustomDepth(true);
     Weapon->SetRenderCustomDepth(true);
 }
-
 void AEnemyCharacter::UnHighLightActor(){
     BodyMesh->SetRenderCustomDepth(false);
     Weapon->SetRenderCustomDepth(false);
 }
-
+// End Highlight PostProcess

@@ -6,7 +6,7 @@
 
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Player/AuraPlayerController.h"
-#include "Player/AuraV2PlayerState.h"
+#include "Player/AuraPlayerState.h"
 
 AAura::AAura(){
     SetUpCharacterMovement();
@@ -61,9 +61,9 @@ void AAura::OnRep_PlayerState(){
 }
 
 void AAura::InitAbilityActorInfo(){
-    AAuraV2PlayerState* AuraV2PlayerState = GetPlayerState<AAuraV2PlayerState>();
-    check(AuraV2PlayerState);
-    AuraV2PlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraV2PlayerState, this);
-    AbilitySystemComponent = AuraV2PlayerState->GetAbilitySystemComponent();
-    AttributeSet = AuraV2PlayerState->GetAttributeSet();
+    AAuraPlayerState* AuraPlayerState = GetPlayerState<AAuraPlayerState>();
+    check(AuraPlayerState);
+    AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
+    AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
+    AttributeSet = AuraPlayerState->GetAttributeSet();
 }

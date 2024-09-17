@@ -17,10 +17,12 @@ void ACharacterBase::SetUpWeaponSkeletalMesh(){
 	Weapon->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
+//State Machine
+void ACharacterBase::CreateStates(){}
+
 void ACharacterBase::SetUpStateMachine(){
 	StateMachine = CreateDefaultSubobject<UStateMachine>("State Machine");
 }
-
 void ACharacterBase::IniStateMachine(const TStrongObjectPtr<UObject>& InitialState){
 	if(StateMachine == nullptr){
 		SetUpStateMachine();
@@ -30,4 +32,4 @@ void ACharacterBase::IniStateMachine(const TStrongObjectPtr<UObject>& InitialSta
 }
 
 void ACharacterBase::UpdateStateHistory(FString NewState){}
-void ACharacterBase::CreateStates(){}
+//End State Machine
