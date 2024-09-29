@@ -7,10 +7,6 @@ UAuraAttributeSet::UAuraAttributeSet(){
 
 	InitMaxMana(108.0f);
 	InitMana(GetMaxMana());
-
-	UE_LOG(LogTemp, Warning, TEXT("UAuraAttributeSet::UAuraAttributeSet()"));
-	UE_LOG(LogTemp, Warning, TEXT("Mana: %f"), GetMana());
-	UE_LOG(LogTemp, Warning, TEXT("UAuraAttributeSet::UAuraAttributeSet()"));
 }
 
 void UAuraAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const{
