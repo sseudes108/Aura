@@ -3,6 +3,8 @@
 #include "Player/AuraPlayerState.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "AbilitySystem/AuraAbilitySystemComponent.h"
+#include "Player/AuraPlayerController.h"
+#include "UI/HUD/AuraHUD.h"
 
 AAuraCharacter::AAuraCharacter(){
     GetCharacterMovement()->bOrientRotationToMovement = true;
@@ -35,4 +37,10 @@ void AAuraCharacter::InitAbilityActorInfo(){
     AuraPlayerState->GetAbilitySystemComponent()->InitAbilityActorInfo(AuraPlayerState, this);
     AbilitySystemComponent = AuraPlayerState->GetAbilitySystemComponent();
     AttributeSet = AuraPlayerState->GetAttributeSet();
+
+    if(AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(GetController()))    {
+        if(AAuraHUD* AuraHUD = Cast<AAuraHUD>(AuraPlayerController->GetHUD()))        {
+            AuraHUD->InitOverLay(AuraPlayerController, AuraPlayerState, AbilitySystemComponent, AttributeSet);
+        }
+    }
 }
